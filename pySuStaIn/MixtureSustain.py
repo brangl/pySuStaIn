@@ -13,8 +13,8 @@ import numpy as np
 import scipy.stats as stats
 from matplotlib import pyplot as plt
 
-from  pySuStaIn.AbstractSustain import AbstractSustainData
-from  pySuStaIn.AbstractSustain import AbstractSustain
+from  pySuStaIn.pySuStaIn.AbstractSustain import AbstractSustainData
+from  pySuStaIn.pySuStaIn.AbstractSustain import AbstractSustain
 
 #*******************************************
 #The data structure class for MixtureSustain. It holds the positive/negative likelihoods that get passed around and re-indexed in places.

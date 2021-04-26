@@ -11,8 +11,8 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-from pySuStaIn.AbstractSustain import AbstractSustainData
-from pySuStaIn.AbstractSustain import AbstractSustain
+from pySuStaIn.pySuStaIn.AbstractSustain import AbstractSustainData
+from pySuStaIn.pySuStaIn.AbstractSustain import AbstractSustain
 
 #*******************************************
 #The data structure class for OrdinalSustain. It holds the score and negative likelihoods that get passed around and re-indexed in places.

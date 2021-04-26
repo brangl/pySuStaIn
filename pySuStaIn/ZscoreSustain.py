@@ -11,8 +11,8 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-from pySuStaIn.AbstractSustain import AbstractSustainData
-from pySuStaIn.AbstractSustain import AbstractSustain
+from pySuStaIn.pySuStaIn.AbstractSustain import AbstractSustainData
+from pySuStaIn.pySuStaIn.AbstractSustain import AbstractSustain
 
 #*******************************************
 #The data structure class for ZscoreSustain. It holds the z-scored data that gets passed around and re-indexed in places.
@@ -32,7 +32,7 @@ class ZScoreSustainData(AbstractSustainData):
         return self.__numStages
 
     def reindex(self, index):
-        return ZScoreSustainData(self.data[index,], self.__numStages)
+        return ZScoreSustainData(self.data[index], self.__numStages)
 
 #*******************************************
 #An implementation of the AbstractSustain class with multiple events for each biomarker based on deviations from normality, measured in z-scores.

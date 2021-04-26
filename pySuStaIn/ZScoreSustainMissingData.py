@@ -10,9 +10,10 @@
 ###
 import numpy as np
 from matplotlib import pyplot as plt
+import pandas as pd
 
-from pySuStaIn.AbstractSustain import AbstractSustainData
-from pySuStaIn.AbstractSustain import AbstractSustain
+from pySuStaIn.pySuStaIn.AbstractSustain import AbstractSustainData
+from pySuStaIn.pySuStaIn.AbstractSustain import AbstractSustain
 
 #*******************************************
 #The data structure class for ZscoreSustain and ZscoreSustainMissingData. It holds the z-scored data that gets passed around and re-indexed in places.
@@ -32,7 +33,7 @@ class ZScoreSustainData(AbstractSustainData):
         return self.__numStages
 
     def reindex(self, index):
-        return ZScoreSustainData(self.data[index,], self.__numStages)
+        return ZScoreSustainData(self.data[index], self.__numStages)
 
 #*******************************************
 #An implementation of the AbstractSustain class with multiple events for each biomarker based on deviations from normality, measured in z-scores.
@@ -228,10 +229,11 @@ class ZscoreSustainMissingData(AbstractSustain):
             stage_value_tiled_j             = stage_value_tiled[:, j].reshape(M, N_biomarkers)
             x_hasdata                       = (sustainData.data - stage_value_tiled_j) / sigmat  #(data_local - stage_value_tiled_j) / sigmat
             
-            p = np.log(p_missingdata);
-            p[~np.isnan(sustainData.data)] = x_hasdata[~np.isnan(sustainData.data)];
+            p = np.log(p_missingdata)
+            pframe = pd.DataFrame(p, columns=sustainData.data.columns) # need to convert to df, otherwise dim mismatch with df and nparray
+            pframe[~np.isnan(sustainData.data)] = x_hasdata[~np.isnan(sustainData.data)]
 
-            p_perm_k[:, j]                  = coeff + np.sum(factor - .5 * np.square(p), 1) 
+            p_perm_k[:, j]                  = coeff + np.sum(factor - .5 * np.square(pframe), 1)
         p_perm_k                            = np.exp(p_perm_k)
      
 
